@@ -2,8 +2,8 @@
 #include <iostream>
 using namespace std;
 
-#define InitialSize 100;
-#define ElemType int;
+#define InitialSize 100
+#define ElemType int
 
 typedef struct {
     ElemType *data ;  //动态分配数组的指针
@@ -23,7 +23,7 @@ void IncreaseSize(SeqList &L, int len) {
     for(int i = 0; i < L.length; i++) {
         L.data[i] = tmp[i];
     }
-    free(p);
+    free(tmp);
 }
 
 bool ListInsert(SeqList &L, int i, ElemType e) {
@@ -34,10 +34,58 @@ bool ListInsert(SeqList &L, int i, ElemType e) {
         return false;
     }
     for(int j = L.length; j >= i; j--) {
-        L.data[i] = L.data[i-1];
+        L.data[j] = L.data[j-1];
     }
-    L.data[i] = e;
+    L.data[i-1] = e;
     L.length++;
     return true;
 }
+
+bool ListDelete(SeqList &L, int i, ElemType &e) {
+    if(i < 1 || i > L.length + 1) {
+        return false;
+    }
+    e = L.data[i-1];
+    for(int j = i; j < L.length; j++) {
+        L.data[j-1] = L.data[j];
+    }
+    L.length--;
+    return true;
+}
+
+ElemType LocateElem(SeqList &L, ElemType e) {
+    for(int i = 0; i < L.length; i++) {
+        if(L.data[i] == e) {
+            return i + 1;
+        }
+    }
+    return 0;
+}
+
+int main()
+{
+    SeqList L;
+    InitialList(L);
+    ListInsert(L, 1, 1);
+    ListInsert(L, 2, 2);
+    ListInsert(L, 3, 3);
+    ListInsert(L, 4, 4);
+    ListInsert(L, 5, 5);
+    int t = 0;
+    ListDelete(L, 3, t);
+    LocateElem(L, 4);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
