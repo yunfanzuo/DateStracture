@@ -73,7 +73,7 @@ int main()
     ListInsert(L, 5, 5);
     int t = 0;
     ListDelete(L, 3, t);
-    LocateElem(L, 4);
+    cout << LocateElem(L, 4) << endl;
     return 0;
 }
 
