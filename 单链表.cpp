@@ -3,7 +3,7 @@ using namespace std;
 
 #define ElemType int
 
-typedef struct Lnode {
+typedef struct LNode {
     ElemType data;
     struct LNode *next;
 } LNode, *LinkList;
@@ -25,7 +25,7 @@ LinkList List_HeadInsert(LinkList &L) {
         s -> data = x;
         s -> next = L -> next;
         L -> next = s;
-        cin >> s;
+        cin >> x;
     }
     return L;
 }
@@ -74,7 +74,7 @@ LNode* LocateElem(LinkList L, ElemType e) {
 }
 
 //插入结点（后插）
-voide ListInsert(LinkList &L, int i, LNode *s) {
+void ListInsert(LinkList &L, int i, LNode *s) {
     LNode *p = GetElem(L, i-1);
     s -> next = p -> next;
     p -> next = s;
@@ -92,7 +92,6 @@ int main()
 {
     LinkList L;
     InitList(L);
-    List_TailInsert(L);
 
     return 0;
 }
